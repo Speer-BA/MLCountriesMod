@@ -2,7 +2,7 @@
 
 A [MelonLoader](https://github.com/LavaGang/MelonLoader) mod for **Broken Arrow** that lets the Arsenal show more than the two vanilla countries.
 
-The vanilla country bar stops after two flags, so a country added by a database mod never appears in the Arsenal. MLCountriesMod draws a flag and specialization icons for every country in the loaded database. If the bar gets too wide, it is shrunk to fit.
+The vanilla country bar stops after two flags, so a new country added by custom database mod never appears in the Arsenal. MLCountriesMod draws a flag and specialization icons for every country in the loaded database. If the bar gets too wide, it is shrunk to fit.
 
 On its own, with only the vanilla countries, the mod changes nothing. It's meant to be used alongside mods that add countries.
 
@@ -24,7 +24,7 @@ After the first launch, the settings are in `UserData\MelonPreferences.cfg`, und
 | `MinScale` | `0.6`   | The smallest size the bar may shrink to (0.3 – 1.0). |
 | `Verbose`  | `false` | Log every country and its specializations when the Arsenal opens. |
 
-## For country modders
+## For modders
 
 If your country doesn't show up, set `Verbose = true`, open the Arsenal and look for `[MLCountriesMod]` lines in `MelonLoader\Latest.log`. Common causes:
 
