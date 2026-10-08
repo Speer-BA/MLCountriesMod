@@ -1,0 +1,7 @@
+<!-- Copy this file to GamePath.props and set your Broken Arrow folder
+     (the one containing BrokenArrow.exe). GamePath.props is ignored by git. -->
+<Project>
+  <PropertyGroup>
+    <GamePath>C:\Program Files (x86)\Steam\steamapps\common\Broken Arrow</GamePath>
+  </PropertyGroup>
+</Project>

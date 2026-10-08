@@ -1,0 +1,52 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Your Broken Arrow folder comes from GamePath.props (not committed to git)
+       or from a GamePath environment variable. See README.md. -->
+  <Import Project="GamePath.props" Condition="Exists('GamePath.props')" />
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <AssemblyName>MLCountriesMod</AssemblyName>
+    <RootNamespace>MLCountriesMod</RootNamespace>
+    <Version>1.0.0</Version>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+    <Product>MLCountriesMod</Product>
+    <AssemblyTitle>MLCountriesMod</AssemblyTitle>
+    <Description>Shows every country from the database in Broken Arrow's Arsenal country bar. Made with Claude.</Description>
+
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+    <NoWarn>CS0618;CS8632</NoWarn>
+
+    <!-- Don't embed the build folder path in the DLL -->
+    <DebugType>none</DebugType>
+    <Deterministic>true</Deterministic>
+    <PathMap>$(MSBuildProjectDirectory)=.</PathMap>
+
+    <ML>$(GamePath)\MelonLoader\net6</ML>
+    <IL2CPP>$(GamePath)\MelonLoader\Il2CppAssemblies</IL2CPP>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="$(ML)\MelonLoader.dll"><Private>false</Private></Reference>
+    <Reference Include="$(ML)\0Harmony.dll"><Private>false</Private></Reference>
+    <Reference Include="$(ML)\Il2CppInterop.Runtime.dll"><Private>false</Private></Reference>
+    <Reference Include="$(ML)\Il2CppInterop.Common.dll"><Private>false</Private></Reference>
+    <Reference Include="$(IL2CPP)\*.dll"><Private>false</Private></Reference>
+  </ItemGroup>
+
+  <Target Name="CheckGamePath" BeforeTargets="PrepareForBuild">
+    <Error Condition="'$(GamePath)' == ''"
+           Text="GamePath is not set. Copy GamePath.props.example to GamePath.props and put your Broken Arrow folder in it." />
+    <Error Condition="'$(GamePath)' != '' And !Exists('$(IL2CPP)')"
+           Text="'$(IL2CPP)' not found. Check GamePath, install MelonLoader and start the game once so it generates Il2CppAssemblies." />
+  </Target>
+
+  <Target Name="CopyToMods" AfterTargets="Build">
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(GamePath)\Mods" />
+  </Target>
+
+</Project>
