@@ -1,0 +1,21 @@
+# Build output
+bin/
+obj/
+
+# Your local game path
+GamePath.props
+
+# Never commit DLLs (game assemblies are the developer's code;
+# the mod DLL goes on the Releases page instead)
+*.dll
+*.pdb
+
+# IDE / OS
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+Thumbs.db
+desktop.ini
+*.zip
